@@ -1,30 +1,38 @@
 function convertToRoman(num) {
-    // Define Roman numeral symbols and their values
-    const romanSymbols = [
-        ['M', 1000], 
-        ['D', 500], 
-        ['C', 100], 
-        ['L', 50], 
-        ['X', 10], 
-        ['V', 5], 
-        ['I', 1]
+    if (num <= 0 || num > 100000) return "Invalid input";
+
+    
+    const romanMap = [
+        ["M", 1000],
+        ["CM", 900],
+        ["D", 500],
+        ["CD", 400],
+        ["C", 100],
+        ["XC", 90],
+        ["L", 50],
+        ["XL", 40],
+        ["X", 10],
+        ["IX", 9],
+        ["V", 5],
+        ["IV", 4],
+        ["I", 1],
     ];
-    
-    let result = '';
-    
-    for (let i = 0; i < romanSymbols.length; i++) {
-       
-        while (num >= romanSymbols[i][1]) {
-            result += romanSymbols[i][0]; 
-            num -= romanSymbols[i][1];    
+
+    let result = "";
+
+    for (let [symbol, value] of romanMap) {
+        while (num >= value) {
+            result += symbol;
+            num -= value;
         }
     }
 
     return result;
 }
 
-// Test the function with various inputs
-console.log(convertToRoman(14));   // Output: XIV
-
+// 🔽 Test cases
+console.log(convertToRoman(14));    
+console.log(convertToRoman(798));   
+console.log(convertToRoman(3999));  
 
 module.exports = convertToRoman
